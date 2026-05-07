@@ -7,18 +7,44 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      background: #0a1628;
+      overflow: hidden;
     }
-    video { max-width: 100%; max-height: 100vh; }
+    video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100vw;
+      min-height: 100vh;
+      width: auto;
+      height: auto;
+      object-fit: cover;
+    }
+    #hint {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.5);
+      font-family: sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
-  <video autoplay muted loop playsinline>
+  <video id="vid" autoplay muted loop playsinline>
     <source src="heailth.mp4" type="video/mp4">
   </video>
+  <div id="hint">Click anywhere for sound</div>
+
+  <script>
+    document.body.addEventListener('click', () => {
+      document.getElementById('vid').muted = false;
+      document.getElementById('hint').style.display = 'none';
+    }, { once: true });
+  </script>
 </body>
 </html>
